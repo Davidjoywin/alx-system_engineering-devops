@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+#displays the time for 12 times and 59 minutes
+
 hour=0;
 while ((hour <= 12));
 do

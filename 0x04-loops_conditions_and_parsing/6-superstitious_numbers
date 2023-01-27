@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+#displays numbers from 1 to 20 with some exceptions
+
 num=0;
 while ((num < 20));
 do
