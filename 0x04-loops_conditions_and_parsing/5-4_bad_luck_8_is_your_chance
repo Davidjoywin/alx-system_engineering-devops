@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+num=0
+while ((num < 10));
+do
+	((num++));
+
+	if ((num == 4));
+	then
+		echo "bad luck";
+	elif ((num == 8));
+	then
+	  	echo "good luck";
+	else
+		echo "Best School";
+	fi
+done
+

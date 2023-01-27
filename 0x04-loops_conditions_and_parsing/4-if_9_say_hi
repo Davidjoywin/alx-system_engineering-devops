@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+num=0
+while ((num < 10)); do
+	echo "Best School";
+	if ((num + 1 == 9)); then
+		echo "Hi";
+	fi
+	((num++));
+done
+
