@@ -1,7 +1,8 @@
+# Config file
 Host *
-    PasswordAuthentication no
-
-Host alx
-    Hostname 3.85.33.102
-    user ubuntu
+    SendEnv LANG LC_*
+    HashKnownHosts yes
+    GSSAPIAuthentication yes
+    GSSAPIDelegateCredentials no
     IdentityFile ~/.ssh/school
+    PasswordAuthentication no
