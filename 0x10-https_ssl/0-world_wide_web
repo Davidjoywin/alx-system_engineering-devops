@@ -1,30 +1,18 @@
 #!/usr/bin/env bash
-# Define a function to get the subdomain information
-get_subdomain_info() {
-  # Use dig to get the DNS information for the subdomain
-  dns_info=$(dig +short $1.$2)
+# shellcheck disable=SC2086
+# display information about subdomains
 
-  # If the DNS information is empty, exit the function
-  if [[ -z $dns_info ]]; then
-    return
-  fi
-
-  # Use awk to extract the record type and destination
-  record_type=$(echo $dns_info | awk '{print $1}')
-  destination=$(echo $dns_info | awk '{print $2}')
-
-  # Print the subdomain information
-  echo "The subdomain $1 is a $record_type record and points to $destination"
+display_info ()
+{
+    domain="$1"
+    subdomain="$2"
+    dig "$subdomain.$domain" | awk '/ANSWER SECTION:/{getline; printf "The subdomain %s is a %s record and points to %s\n", var, $4, $5}' var="$subdomain"
 }
 
-# If two arguments are passed, get the information for the specified subdomain
-if [[ $# -eq 2 ]]; then
-  get_subdomain_info $2 $1
-
-# Otherwise, get the information for the default subdomains
-else
-  get_subdomain_info www $1
-  get_subdomain_info lb-01 $1
-  get_subdomain_info web-01 $1
-  get_subdomain_info web-02 $1
-fi
+for subdomain in "www" "lb-01" "web-01" "web-02"
+do
+    if [ -z "$2" ] || [ "$2" == "$subdomain" ] ;
+    then
+	display_info "$1" "$subdomain"
+    fi
+done
