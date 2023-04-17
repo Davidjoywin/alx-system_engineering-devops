@@ -1,3 +1,8 @@
+#!/usr/bin/env bash
+# configure a ufw to block all firewall to  block all incoming traffic
+# except TCP ports 22, 443 and 80
+
+
 sudo pacman -Syu
 sudo pacman -S ufw
 sudo ufw disable
