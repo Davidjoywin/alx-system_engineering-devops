@@ -1,1 +1,1 @@
-This is for bash scripting
+# This is for bash scripting
